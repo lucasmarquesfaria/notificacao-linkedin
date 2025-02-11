@@ -6,48 +6,46 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 
-interface JobSearchFormProps {
-  onSearch: (criteria: { keywords: string; location: string }) => void
+interface FormularioBuscaEmpregosProps {
+  onBusca: (criterios: { palavrasChave: string; localizacao: string }) => void
 }
 
-export default function JobSearchForm({ onSearch }: JobSearchFormProps) {
-  const [keywords, setKeywords] = useState("")
-  const [location, setLocation] = useState("")
+export default function FormularioBuscaEmpregos({ onBusca }: FormularioBuscaEmpregosProps) {
+  const [palavrasChave, setPalavrasChave] = useState("")
+  const [localizacao, setLocalizacao] = useState("")
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    onSearch({ keywords, location })
+    onBusca({ palavrasChave, localizacao })
   }
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Definir Critérios de Busca</CardTitle>
+        <CardTitle>Buscar Vagas</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="keywords">Palavras-chave</Label>
+            <Label htmlFor="palavrasChave">Palavras-chave</Label>
             <Input
-              id="keywords"
+              id="palavrasChave"
               placeholder="ex: Engenheiro de Software, React"
-              value={keywords}
-              onChange={(e) => setKeywords(e.target.value)}
-              required
+              value={palavrasChave}
+              onChange={(e) => setPalavrasChave(e.target.value)}
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="location">Localização</Label>
+            <Label htmlFor="localizacao">Localização</Label>
             <Input
-              id="location"
+              id="localizacao"
               placeholder="ex: São Paulo, Remoto"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-              required
+              value={localizacao}
+              onChange={(e) => setLocalizacao(e.target.value)}
             />
           </div>
           <Button type="submit" className="w-full">
-            Buscar Vagas
+            Buscar
           </Button>
         </form>
       </CardContent>
